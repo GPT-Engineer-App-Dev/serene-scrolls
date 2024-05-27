@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Heading, Link, Text, VStack, HStack, Spacer, Divider, Button } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Link, Text, VStack, HStack, Spacer, Divider, Button, useColorModeValue } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
@@ -12,7 +12,7 @@ const Index = () => {
   }, []);
   return (
     <Container maxW="container.xl" p={0}>
-      <Flex as="nav" bg="gray.800" color="white" p={4} justifyContent="space-between" alignItems="center">
+      <Flex as="nav" bg={useColorModeValue("gray.800", "gray.200")} color={useColorModeValue("white", "black")} p={4} justifyContent="space-between" alignItems="center">
         <Heading size="md">My Blog</Heading>
         <HStack spacing={4}>
           <Link as={RouterLink} to="/">Home</Link>
@@ -32,7 +32,7 @@ const Index = () => {
           ))}
         </Box>
 
-        <Box flex="1" p={4} bg="gray.50" borderRadius="lg" ml={{ md: 4 }}>
+        <Box flex="1" p={4} bg={useColorModeValue("gray.50", "gray.700")} borderRadius="lg" ml={{ md: 4 }}>
           <Heading as="h3" size="md" mb={4}>Recent Posts</Heading>
           <VStack align="start" spacing={2}>
             {posts.slice(0, 5).map((post, index) => (
@@ -51,7 +51,7 @@ const Index = () => {
         </Box>
       </Flex>
 
-      <Box as="footer" bg="gray.800" color="white" p={4} mt={4}>
+      <Box as="footer" bg={useColorModeValue("gray.800", "gray.200")} color={useColorModeValue("white", "black")} p={4} mt={4}>
         <Flex justifyContent="center" alignItems="center">
           <HStack spacing={4}>
             <Link href="#"><FaTwitter /></Link>
