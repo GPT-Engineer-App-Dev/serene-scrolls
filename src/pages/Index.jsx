@@ -10,6 +10,13 @@ const Index = () => {
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
     setPosts(storedPosts);
   }, []);
+
+  const handleDelete = (index) => {
+    const updatedPosts = posts.filter((_, i) => i !== index);
+    setPosts(updatedPosts);
+    localStorage.setItem("posts", JSON.stringify(updatedPosts));
+  };
+
   return (
     <Container maxW="container.xl" p={0}>
       <Flex as="nav" bg={useColorModeValue("gray.800", "gray.200")} color={useColorModeValue("white", "black")} p={4} justifyContent="space-between" alignItems="center">
@@ -28,6 +35,7 @@ const Index = () => {
               <Heading as="h3" size="md">{post.title}</Heading>
               {post.image && <Box mt={2}><img src={post.image} alt={post.title} style={{ maxWidth: "100%" }} /></Box>}
               <Text mt={2}>{post.content}</Text>
+              <Button colorScheme="red" mt={2} onClick={() => handleDelete(index)}>Delete</Button>
             </Box>
           ))}
         </Box>
